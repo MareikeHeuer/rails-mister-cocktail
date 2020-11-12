@@ -16,5 +16,5 @@ ingredient_list = JSON.parse(list_serialized)
 
 ingredient_list["drinks"].each do |ingredient| #ingredient is a hash
     name = ingredient["strIngredient1"]
-    Ingredient.new(name: name)
+    Ingredient.create(name: name)
 end
