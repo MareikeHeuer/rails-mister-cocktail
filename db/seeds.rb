@@ -18,3 +18,4 @@ ingredient_list["drinks"].each do |ingredient| #ingredient is a hash
     name = ingredient["strIngredient1"]
     Ingredient.create(name: name)
 end
+
