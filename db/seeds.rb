@@ -35,7 +35,7 @@ puts "Done! Created #{Ingredient.count} ingredients."
 
 # Cocktails
 
-Cocktail.create(name: "Mojito")
+Cocktail.create(name: "Mojito" )
 Cocktail.create(name: "Tequila Sunrise")
 Cocktail.create(name: "Cuba Libre")
 Cocktail.create(name: "Cosmopolitan")
