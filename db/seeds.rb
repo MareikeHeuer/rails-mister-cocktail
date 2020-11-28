@@ -10,12 +10,35 @@ require 'json'
 require 'open-uri'
 
 
-url = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list'
-list_serialized = open(url).read
-ingredient_list = JSON.parse(list_serialized)
+# url = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list'
+# list_serialized = open(url).read
+# ingredient_list = JSON.parse(list_serialized)
 
-ingredient_list["drinks"].each do |ingredient| #ingredient is a hash
-    name = ingredient["strIngredient1"]
-    Ingredient.create(name: name)
+# ingredient_list["drinks"].each do |ingredient| #ingredient is a hash
+    # name = ingredient["strIngredient1"]
+    # Ingredient.create(name: name)
+# end
+
+puts "Cleaning database now..."
+Ingredient.destroy_all
+Cocktail.destroy_all
+puts "Database clean ✅"
+
+puts "Creating ingredients"
+url = "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list"
+ingredients = JSON.parse(open(url).read)
+ingredients["drinks"].each do |ingredient|
+  item = Ingredient.create(name: ingredient["strIngredient1"])
+  puts "#{item.name}"
 end
+puts "Done! Created #{Ingredient.count} ingredients."
+
+# Cocktails
+
+Cocktail.create(name: "Mojito")
+Cocktail.create(name: "Tequila Sunrise")
+Cocktail.create(name: "Cuba Libre")
+Cocktail.create(name: "Cosmopolitan")
+Cocktail.create(name: "Pisco Sour")
+Cocktail.create(name: "Long Island Icetea")
 
